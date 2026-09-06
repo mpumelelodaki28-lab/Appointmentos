@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UFT-8">
+  <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+  <title>AppointmentOS</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    body {
+        margin:0;
+        font-family: Arial, sans-serif;
+        background: #071a3d;
+        colour: white;
+        min-height: 100vh;
+        display: flex;
+        justfiy-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        text-align:center;
+    }
+    .logo{
+       font-size:42px;
+       font-width:bold;
+       margin-bottom:10px;
+    }
+
+    .tagline{
+       font-size:20px;
+       colour:#cbd5e1;
+       margin-bottom:40px;
+    }
+
+    .card{
+       background:102852;
+       padding:40px;
+       border-radius:18px;
+       box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    h2{
+      margin-bottom:25px;
+    }
+
+    .business-types{
+       display:grid;
+       grid-tamplate-columns: repeat(3,1fr);
+       gap:15px;
+    }
+
+    .bussiness{
+       background:#183968;
+       padding:20px;
+       border-radius:12px;
+       cursor;pointer;
+       transition:0.2s;
+    }
+
+    .business:hover{
+       transform:translateY(-3px);
+       background:#234b82;
+    }
+
+    .icon{
+       font-size:30px;
+       margin-bottom:8px;
+    }
+
+    .business-name{
+       font-size:16px;
+    }
+
+    @media (max-width:650px){
+       business-types{
+        grid-template-columns:repeat(2,fr);
+       }
+
+    .logo{
+        font-size:34px;
+    }
+    }
+  </style>
+
+</head>
+
+<body> 
+
+<div class="container">
+
+  <div class="logo">AppointmentOS</div>
+
+  <div class="tagline">
+    The smarter way to manage your business.
+  </div>
+
+  <div class="card">
+
+    <h2>What type of business do you have?</h2>
+
+    <div class ="business-type">
+
+      <div class="business">
+        <div class="icon">HERE</div>
+        <div class="business-name">Real Estate</div>
+     
+      </div>
+
+      <div class="business">
+        <div class="icon">HERE</div>
+        <div class="bussiness-name">Salon & Barber</div>
+
+      </div>
+
+      <div class="business">
+        <div class="icon">HERE</div>
+        <div class="business-name">Automative</div>
+
+      </div>
+
+      <div class="business">
+        <div class="icon">HERE</div>
+        <div class="business-name">Services</div>
+
+      </div>
+
+        <div class="busines">
+          <div class="icon">HERE</div>
+          <div class="business-name">Education</div>
+        </div>
+      
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
