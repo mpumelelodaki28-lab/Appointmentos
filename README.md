@@ -1,2 +1,2 @@
-# Appointmentos
-Real estate booking and lead management system
+# AppointmentOS
+Smart appointment, customer, booking, and business management for businesses across multiple industries.
