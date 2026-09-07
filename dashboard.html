@@ -321,8 +321,8 @@
 
                 <h2>Quick Actions</h2>
 
-                <button class="add-button">
-                    + Add Appointment
+                <button class="add-button" onclick="openAppointmentForm()">
+    +               + Add Appointment
                 </button>
 
             </div>
@@ -330,6 +330,139 @@
         </section>
 
     </main>
+    
+    <!-- ADD APPOINTMENT POPUP -->
+<div id="appointmentModal" class="modal">
 
+    <div class="modal-content">
+
+        <span class="close" onclick="closeAppointmentForm()">&times;</span>
+
+        <h2>Add Appointment</h2>
+
+        <form id="appointmentForm">
+
+            <label>Customer Name</label>
+            <input type="text" id="customerName" placeholder="Enter customer name" required>
+
+            <label>Service</label>
+            <input type="text" id="serviceName" placeholder="e.g. Haircut" required>
+
+            <label>Date</label>
+            <input type="date" id="appointmentDate" required>
+
+            <label>Time</label>
+            <input type="time" id="appointmentTime" required>
+
+            <button type="submit" class="save-button">
+                Save Appointment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: white;
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .modal-content h2 {
+        margin-bottom: 20px;
+    }
+
+    .modal-content label {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    .modal-content input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        font-size: 15px;
+    }
+
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .save-button {
+        width: 100%;
+        margin-top: 25px;
+        padding: 13px;
+        background: #071a3d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+</style>
+
+
+<script>
+
+    function openAppointmentForm() {
+        document.getElementById("appointmentModal").style.display = "flex";
+    }
+
+    function closeAppointmentForm() {
+        document.getElementById("appointmentModal").style.display = "none";
+    }
+
+    document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const customer = document.getElementById("customerName").value;
+        const service = document.getElementById("serviceName").value;
+        const date = document.getElementById("appointmentDate").value;
+        const time = document.getElementById("appointmentTime").value;
+
+        alert(
+            "Appointment saved!\\n\\n" +
+            "Customer: " + customer + "\\n" +
+            "Service: " + service + "\\n" +
+            "Date: " + date + "\\n" +
+            "Time: " + time
+        );
+
+        document.getElementById("appointmentForm").reset();
+        closeAppointmentForm();
+
+    });
+
+</script>
 </body>
 </html>
