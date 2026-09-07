@@ -456,6 +456,23 @@
         const service = document.getElementById("serviceName").value;
         const date = document.getElementById("appointmentDate").value;
         const time = document.getElementById("appointmentTime").value;
+        const appointmentList = document.getElementById("appointmentList");
+
+const newAppointment = document.createElement("div");
+newAppointment.className = "appointment";
+
+newAppointment.innerHTML = `
+    <div>
+        <div class="customer">${customer}</div>
+        <div class="service">${service}</div>
+    </div>
+
+    <div class="time">
+        ${time}
+    </div>
+`;
+
+appointmentList.appendChild(newAppointment);
 
         
 
