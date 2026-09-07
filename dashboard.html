@@ -456,7 +456,44 @@
         const service = document.getElementById("serviceName").value;
         const date = document.getElementById("appointmentDate").value;
         const time = document.getElementById("appointmentTime").value;
+        function loadAppointments() {
+
+    const savedAppointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+    savedAppointments.forEach(function(appointment) {
+
+        const newAppointment = document.createElement("div");
+
+        newAppointment.className = "appointment";
+
+        newAppointment.innerHTML = `
+            <div>
+                <div class="customer">${appointment.customer}</div>
+                <div class="service">${appointment.service}</div>
+            </div>
+
+            <div class="time">
+                ${appointment.time}
+            </div>
+        `;
+
+        appointmentList.appendChild(newAppointment);
+
+    });
+}
+
+loadAppointments();
         const appointmentList = document.getElementById("appointmentList");
+
+        let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+        appointments.push({
+            customer: customer,
+            service: service,
+            date: date,
+            time: time
+});
+localStorage.setItem("appointments", JSON.stringify(appointments));
 
 const newAppointment = document.createElement("div");
 newAppointment.className = "appointment";
