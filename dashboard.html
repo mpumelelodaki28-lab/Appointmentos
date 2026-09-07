@@ -269,51 +269,58 @@
 
                 <h2>Today's Appointments</h2>
 
-                <div class="appointment">
-                    <div>
-                        <div class="customer">Thabo Mokoena</div>
-                        <div class="service">Haircut</div>
-                    </div>
+                <div id="appointmentList">
 
-                    <div class="time">
-                        09:00
-                    </div>
-                </div>
-
-                <div class="appointment">
-                    <div>
-                        <div class="customer">Lerato Dlamini</div>
-                        <div class="service">Consultation</div>
-                    </div>
-
-                    <div class="time">
-                        10:30
-                    </div>
-                </div>
-
-                <div class="appointment">
-                    <div>
-                        <div class="customer">Sipho Nkosi</div>
-                        <div class="service">Haircut & Beard</div>
-                    </div>
-
-                    <div class="time">
-                        12:00
-                    </div>
-                </div>
-
-                <div class="appointment">
-                    <div>
-                        <div class="customer">Ayanda Zulu</div>
-                        <div class="service">Treatment</div>
-                    </div>
-
-                    <div class="time">
-                        14:00
-                    </div>
-                </div>
-
+                   <div class="appointment">
+                       <div>
+                <div class="customer">Thabo Mokoena</div>
+                <div class="service">Haircut</div>
             </div>
+
+            <div class="time">
+                09:00
+            </div>
+        </div>
+
+
+        <div class="appointment">
+            <div>
+                <div class="customer">Lerato Dlamini</div>
+                <div class="service">Consultation</div>
+            </div>
+
+            <div class="time">
+                10:30
+            </div>
+        </div>
+
+
+        <div class="appointment">
+            <div>
+                <div class="customer">Sipho Nkosi</div>
+                <div class="service">Haircut & Beard</div>
+            </div>
+
+            <div class="time">
+                12:00
+            </div>
+        </div>
+
+
+        <div class="appointment">
+            <div>
+                <div class="customer">Ayanda Zulu</div>
+                <div class="service">Treatment</div>
+            </div>
+
+            <div class="time">
+                14:00
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 
             <!-- QUICK ACTIONS -->
@@ -450,13 +457,7 @@
         const date = document.getElementById("appointmentDate").value;
         const time = document.getElementById("appointmentTime").value;
 
-        alert(
-            "Appointment saved!\\n\\n" +
-            "Customer: " + customer + "\\n" +
-            "Service: " + service + "\\n" +
-            "Date: " + date + "\\n" +
-            "Time: " + time
-        );
+        
 
         document.getElementById("appointmentForm").reset();
         closeAppointmentForm();
