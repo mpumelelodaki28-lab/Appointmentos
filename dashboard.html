@@ -516,7 +516,8 @@
 
     <script>
          const appointmentTable = document.getElementById("appointmentTable");
-
+         let editingIndex = null;
+        
 function openAppointmentForm() {
     document.getElementById("appointmentModal").style.display = "flex";
 }
@@ -590,12 +591,27 @@ document
         const appointments =
             JSON.parse(localStorage.getItem("appointments")) || [];
 
-        appointments.push({
-            customer: customer,
-            service: service,
-            date: date,
-            time: time
-        });
+        if (editingIndex !== null) {
+
+    appointments[editingIndex] = {
+        customer: customer,
+        service: service,
+        date: date,
+        time: time
+    };
+
+    editingIndex = null;
+
+} else {
+
+    appointments.push({
+        customer: customer,
+        service: service,
+        date: date,
+        time: time
+    });
+
+}
 
         localStorage.setItem(
             "appointments",
@@ -610,7 +626,29 @@ document
 
         loadAppointments();
     });
+function editAppointment(index) {
 
+    const appointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+    const appointment = appointments[index];
+
+    document.getElementById("customerName").value =
+        appointment.customer;
+
+    document.getElementById("serviceName").value =
+        appointment.service;
+
+    document.getElementById("appointmentDate").value =
+        appointment.date;
+
+    document.getElementById("appointmentTime").value =
+        appointment.time;
+
+    editingIndex = index;
+
+    document.getElementById("appointmentModal").style.display = "flex";
+}
 function deleteAppointment(index) {
 
     const appointments =
