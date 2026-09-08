@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AppointmentOS Dashboard</title>
+    <title>Appointments - AppointmentOS</title>
 
     <style>
 
@@ -17,8 +17,8 @@
         }
 
         body {
-            background: #f4f6f9;
-            color: #172033;
+            background: #f4f6fa;
+            color: #222;
         }
 
         /* SIDEBAR */
@@ -38,140 +38,125 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 40px;
-            padding-left: 10px;
+            text-align: center;
         }
 
         .nav-item {
             display: block;
+            color: white;
+            text-decoration: none;
             padding: 14px 15px;
             margin-bottom: 8px;
             border-radius: 8px;
-            color: #dce5f5;
-            text-decoration: none;
         }
 
         .nav-item:hover,
         .nav-item.active {
-            background: #12366f;
-            color: white;
+            background: #12336f;
         }
 
         /* MAIN */
 
         .main {
             margin-left: 240px;
-            padding: 30px;
+            padding: 35px;
         }
 
-        .topbar {
+        .top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
         }
 
-        .topbar h1 {
-            font-size: 28px;
+        .top h1 {
+            color: #071a3d;
         }
-
-        .business-name {
-            background: white;
-            padding: 12px 18px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        /* CARDS */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-        }
-
-        .card h3 {
-            font-size: 14px;
-            color: #687386;
-            margin-bottom: 12px;
-        }
-
-        .number {
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        /* CONTENT */
-
-        .content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-
-        .panel {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-        }
-
-        .panel h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        /* APPOINTMENTS */
-
-        .appointment {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .appointment:last-child {
-            border-bottom: none;
-        }
-
-        .customer {
-            font-weight: bold;
-        }
-
-        .service {
-            color: #687386;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .time {
-            font-weight: bold;
-        }
-
-        /* BUTTON */
 
         .add-button {
             background: #071a3d;
             color: white;
             border: none;
-            padding: 13px 18px;
+            padding: 13px 20px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
         }
 
         .add-button:hover {
-            background: #12366f;
+            background: #12336f;
         }
 
-        /* POPUP */
+        /* SEARCH */
+
+        .search {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        /* TABLE */
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            background: #f4f6fa;
+            color: #071a3d;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status {
+            background: #e5f7e9;
+            color: #218838;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* ACTION BUTTONS */
+
+        .action-button {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #071a3d;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .action-button:hover {
+            background: #12336f;
+        }
+
+        .action-button.delete {
+            background: #dc3545;
+        }
+
+        .action-button.delete:hover {
+            background: #b02a37;
+        }
+
+        /* MODAL */
 
         .modal {
             display: none;
@@ -181,7 +166,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
         }
@@ -193,11 +178,11 @@
             padding: 30px;
             border-radius: 15px;
             position: relative;
-            z-index: 1001;
         }
 
         .modal-content h2 {
             margin-bottom: 20px;
+            color: #071a3d;
         }
 
         .modal-content label {
@@ -236,273 +221,176 @@
         }
 
         .save-button:hover {
-            background: #12366f;
+            background: #12336f;
         }
 
-        /* MOBILE */
-
-        @media (max-width: 900px) {
-
-            .sidebar {
-                width: 200px;
-            }
-
-            .main {
-                margin-left: 200px;
-            }
-
-            .cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-        }
-          .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    width: 90%;
-    max-width: 500px;
-    padding: 30px;
-    border-radius: 15px;
-    position: relative;
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-}
-
-.modal-content label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 15px;
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.save-button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 13px;
-    background: #071a3d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
     </style>
-
 </head>
-
 
 <body>
 
     <!-- SIDEBAR -->
 
-    <aside class="sidebar">
+    <div class="sidebar">
 
         <div class="logo">
             AppointmentOS
         </div>
 
-        <a href="#" class="nav-item active">Dashboard</a>
-        <a href="appointments.html" class="nav-item">Appointments</a>
-        <a href="#" class="nav-item">Customers</a>
-        <a href="#" class="nav-item">Services</a>
-        <a href="#" class="nav-item">Staff</a>
-        <a href="#" class="nav-item">Reports</a>
-        <a href="#" class="nav-item">Settings</a>
+        <a href="dashboard.html" class="nav-item">
+            Dashboard
+        </a>
 
-    </aside>
+        <a href="appointments.html" class="nav-item active">
+            Appointments
+        </a>
+
+        <a href="#" class="nav-item">
+            Customers
+        </a>
+
+        <a href="#" class="nav-item">
+            Services
+        </a>
+
+        <a href="#" class="nav-item">
+            Staff
+        </a>
+
+        <a href="#" class="nav-item">
+            Reports
+        </a>
+
+        <a href="#" class="nav-item">
+            Settings
+        </a>
+
+    </div>
 
 
-    <!-- MAIN DASHBOARD -->
+    <!-- MAIN CONTENT -->
 
     <main class="main">
 
-        <div class="topbar">
+        <div class="top">
 
-            <div>
-                <h1>Dashboard</h1>
-                <p>Welcome back 👋</p>
-            </div>
+            <h1>Appointments</h1>
 
-            <div class="business-name">
-                My Business
-            </div>
+            <button
+                class="add-button"
+                onclick="openAppointmentForm()">
+
+                + Add Appointment
+
+            </button>
 
         </div>
 
 
-        <!-- STATISTICS -->
-
-        <section class="cards">
-
-            <div class="card">
-                <h3>Today's Appointments</h3>
-                <div class="number" id="todayCount">0</div>
-            </div>
-
-            <div class="card">
-                <h3>Upcoming</h3>
-                <div class="number" id="upcomingCount">0</div>
-            </div>
-
-            <div class="card">
-                <h3>Customers</h3>
-                <div class="number" id="customerCount">0</div>
-            </div>
-
-            <div class="card">
-                <h3>Today's Revenue</h3>
-                <div class="number">R0</div>
-            </div>
-
-        </section>
+        <input
+            type="text"
+            id="searchInput"
+            class="search"
+            placeholder="Search appointments...">
 
 
-        <!-- CONTENT -->
+        <div class="table-container">
 
-        <section class="content">
+            <table>
 
+                <thead>
 
-            <!-- APPOINTMENTS -->
+                    <tr>
 
-            <div class="panel">
+                        <th>Customer</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
 
-                <h2>Today's Appointments</h2>
+                    </tr>
 
-                <div id="appointmentList">
+                </thead>
 
-                    <!-- Appointments will appear here -->
+                <tbody id="appointmentTable">
 
-                </div>
+                </tbody>
 
-            </div>
+            </table>
 
-
-            <!-- QUICK ACTIONS -->
-
-            <div class="panel">
-
-                <h2>Quick Actions</h2>
-
-                <button class="add-button" onclick="openAppointmentForm()">
-                    + Add Appointment
-                </button>
-
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
 
-    <!-- ADD APPOINTMENT POPUP -->
+    <!-- ADD / EDIT APPOINTMENT POPUP -->
 
     <div id="appointmentModal" class="modal">
 
         <div class="modal-content">
 
-            <span class="close" onclick="closeAppointmentForm()">
+            <span
+                class="close"
+                onclick="closeAppointmentForm()">
                 &times;
             </span>
 
-            <h2>Add Appointment</h2>
-
+            <h2 id="appointmentModalTitle">
+                Add Appointment
+            </h2>
 
             <form id="appointmentForm">
 
-                <label>Customer Name</label>
+                <label>
+                    Customer Name
+                </label>
 
                 <input
                     type="text"
                     id="customerName"
                     placeholder="Enter customer name"
-                    required
-                >
+                    required>
 
 
-                <label>Service</label>
+                <label>
+                    Service
+                </label>
 
                 <input
                     type="text"
                     id="serviceName"
                     placeholder="e.g. Haircut"
-                    required
-                >
+                    required>
 
 
-                <label>Date</label>
+                <label>
+                    Date
+                </label>
 
                 <input
                     type="date"
                     id="appointmentDate"
-                    required
-                >
+                    required>
 
 
-                <label>Time</label>
+                <label>
+                    Time
+                </label>
 
                 <input
                     type="time"
                     id="appointmentTime"
-                    required
-                >
+                    required>
 
 
                 <button
                     type="submit"
                     class="save-button"
-                >
+                    id="saveButton">
+
                     Save Appointment
+
                 </button>
 
             </form>
@@ -515,157 +403,302 @@
     <!-- JAVASCRIPT -->
 
     <script>
-         const appointmentTable = document.getElementById("appointmentTable");
-         let editingIndex = null;
-        
-function openAppointmentForm() {
-    document.getElementById("appointmentModal").style.display = "flex";
-}
 
-function closeAppointmentForm() {
-    document.getElementById("appointmentModal").style.display = "none";
-}
+        const appointmentTable =
+            document.getElementById("appointmentTable");
 
-function loadAppointments() {
+        let editingIndex = null;
 
-    const appointments =
-        JSON.parse(localStorage.getItem("appointments")) || [];
 
-    appointmentTable.innerHTML = "";
+        /* OPEN ADD FORM */
 
-    appointments.forEach(function(appointment, index) {
+        function openAppointmentForm() {
 
-        const row = document.createElement("tr");
+            editingIndex = null;
 
-        row.innerHTML = `
-            <td>${appointment.customer}</td>
-            <td>${appointment.service}</td>
-            <td>${appointment.date}</td>
-            <td>${appointment.time}</td>
+            document.getElementById("appointmentForm").reset();
 
-            <td>
-                <span class="status">
-                    Confirmed
-                </td>
-            <td>
+            document.getElementById("appointmentModalTitle").textContent =
+                "Add Appointment";
 
-    <button
-        class="action-button edit"
-        onclick="editAppointment(${index})">
-        Edit
-    </button>
+            document.getElementById("saveButton").textContent =
+                "Save Appointment";
 
-    <button
-        class="action-button delete"
-        onclick="deleteAppointment(${index})">
-        Delete
-    </button>
+            document.getElementById("appointmentModal").style.display =
+                "flex";
+        }
 
-</td>
-        `;
 
-        appointmentTable.appendChild(row);
-    });
-}
+        /* CLOSE FORM */
 
-document
-    .getElementById("appointmentForm")
-    .addEventListener("submit", function(event) {
+        function closeAppointmentForm() {
 
-        event.preventDefault();
+            document.getElementById("appointmentModal").style.display =
+                "none";
 
-        const customer =
-            document.getElementById("customerName").value;
+            editingIndex = null;
+        }
 
-        const service =
-            document.getElementById("serviceName").value;
 
-        const date =
-            document.getElementById("appointmentDate").value;
+        /* LOAD APPOINTMENTS */
 
-        const time =
-            document.getElementById("appointmentTime").value;
+        function loadAppointments() {
 
-        const appointments =
-            JSON.parse(localStorage.getItem("appointments")) || [];
+            const appointments =
+                JSON.parse(localStorage.getItem("appointments")) || [];
 
-        if (editingIndex !== null) {
+            appointmentTable.innerHTML = "";
 
-    appointments[editingIndex] = {
-        customer: customer,
-        service: service,
-        date: date,
-        time: time
-    };
 
-    editingIndex = null;
+            appointments.forEach(function(appointment, index) {
 
-} else {
+                const row =
+                    document.createElement("tr");
 
-    appointments.push({
-        customer: customer,
-        service: service,
-        date: date,
-        time: time
-    });
 
-}
+                row.innerHTML = `
 
-        localStorage.setItem(
-            "appointments",
-            JSON.stringify(appointments)
-        );
+                    <td>
+                        ${appointment.customer}
+                    </td>
+
+                    <td>
+                        ${appointment.service}
+                    </td>
+
+                    <td>
+                        ${appointment.date}
+                    </td>
+
+                    <td>
+                        ${appointment.time}
+                    </td>
+
+                    <td>
+
+                        <span class="status">
+                            Confirmed
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-button"
+                            onclick="editAppointment(${index})">
+
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="action-button delete"
+                            onclick="deleteAppointment(${index})">
+
+                            Delete
+
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                appointmentTable.appendChild(row);
+
+            });
+
+        }
+
+
+        /* EDIT APPOINTMENT */
+
+        function editAppointment(index) {
+
+            const appointments =
+                JSON.parse(localStorage.getItem("appointments")) || [];
+
+
+            const appointment =
+                appointments[index];
+
+
+            if (!appointment) {
+                return;
+            }
+
+
+            document.getElementById("customerName").value =
+                appointment.customer;
+
+            document.getElementById("serviceName").value =
+                appointment.service;
+
+            document.getElementById("appointmentDate").value =
+                appointment.date;
+
+            document.getElementById("appointmentTime").value =
+                appointment.time;
+
+
+            editingIndex = index;
+
+
+            document.getElementById("appointmentModalTitle").textContent =
+                "Edit Appointment";
+
+            document.getElementById("saveButton").textContent =
+                "Update Appointment";
+
+
+            document.getElementById("appointmentModal").style.display =
+                "flex";
+
+        }
+
+
+        /* SAVE / UPDATE */
 
         document
             .getElementById("appointmentForm")
-            .reset();
+            .addEventListener("submit", function(event) {
 
-        closeAppointmentForm();
+                event.preventDefault();
+
+
+                const customer =
+                    document.getElementById("customerName").value;
+
+                const service =
+                    document.getElementById("serviceName").value;
+
+                const date =
+                    document.getElementById("appointmentDate").value;
+
+                const time =
+                    document.getElementById("appointmentTime").value;
+
+
+                const appointments =
+                    JSON.parse(localStorage.getItem("appointments")) || [];
+
+
+                /* UPDATE EXISTING */
+
+                if (editingIndex !== null) {
+
+                    appointments[editingIndex] = {
+
+                        customer: customer,
+                        service: service,
+                        date: date,
+                        time: time
+
+                    };
+
+                }
+
+                /* ADD NEW */
+
+                else {
+
+                    appointments.push({
+
+                        customer: customer,
+                        service: service,
+                        date: date,
+                        time: time
+
+                    });
+
+                }
+
+
+                localStorage.setItem(
+                    "appointments",
+                    JSON.stringify(appointments)
+                );
+
+
+                editingIndex = null;
+
+
+                document
+                    .getElementById("appointmentForm")
+                    .reset();
+
+
+                closeAppointmentForm();
+
+
+                loadAppointments();
+
+            });
+
+
+        /* DELETE */
+
+        function deleteAppointment(index) {
+
+            const appointments =
+                JSON.parse(localStorage.getItem("appointments")) || [];
+
+
+            appointments.splice(index, 1);
+
+
+            localStorage.setItem(
+                "appointments",
+                JSON.stringify(appointments)
+            );
+
+
+            loadAppointments();
+
+        }
+
+
+        /* SEARCH */
+
+        document
+            .getElementById("searchInput")
+            .addEventListener("input", function() {
+
+                const search =
+                    this.value.toLowerCase();
+
+                const rows =
+                    appointmentTable.querySelectorAll("tr");
+
+
+                rows.forEach(function(row) {
+
+                    const text =
+                        row.textContent.toLowerCase();
+
+                    if (text.includes(search)) {
+
+                        row.style.display = "";
+
+                    }
+
+                    else {
+
+                        row.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+
+        /* START */
 
         loadAppointments();
-    });
-function editAppointment(index) {
-
-    const appointments =
-        JSON.parse(localStorage.getItem("appointments")) || [];
-
-    const appointment = appointments[index];
-
-    document.getElementById("customerName").value =
-        appointment.customer;
-
-    document.getElementById("serviceName").value =
-        appointment.service;
-
-    document.getElementById("appointmentDate").value =
-        appointment.date;
-
-    document.getElementById("appointmentTime").value =
-        appointment.time;
-
-    editingIndex = index;
-
-    document.getElementById("appointmentModal").style.display = "flex";
-}
-function deleteAppointment(index) {
-
-    const appointments =
-        JSON.parse(localStorage.getItem("appointments")) || [];
-
-    appointments.splice(index, 1);
-
-    localStorage.setItem(
-        "appointments",
-        JSON.stringify(appointments)
-    );
-
-    loadAppointments();
-}
-
-loadAppointments();
 
     </script>
-
 
 </body>
 
