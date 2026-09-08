@@ -515,149 +515,110 @@
     <!-- JAVASCRIPT -->
 
     <script>
+         const appointmentTable = document.getElementById("appointmentTable");
 
-        const appointmentList =
-            document.getElementById("appointmentList");
+function openAppointmentForm() {
+    document.getElementById("appointmentModal").style.display = "flex";
+}
 
+function closeAppointmentForm() {
+    document.getElementById("appointmentModal").style.display = "none";
+}
 
-        function openAppointmentForm() {
+function loadAppointments() {
 
-            document.getElementById("appointmentModal").style.display = "flex";
+    const appointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
 
-        }
+    appointmentTable.innerHTML = "";
 
+    appointments.forEach(function(appointment, index) {
 
-        function closeAppointmentForm() {
+        const row = document.createElement("tr");
 
-            document.getElementById("appointmentModal").style.display = "none";
+        row.innerHTML = `
+            <td>${appointment.customer}</td>
+            <td>${appointment.service}</td>
+            <td>${appointment.date}</td>
+            <td>${appointment.time}</td>
 
-        }
+            <td>
+                <span class="status">
+                    Confirmed
+                </span>
+            </td>
 
+            <td>
+                <button
+                    class="action-button delete"
+                    onclick="deleteAppointment(${index})">
+                    Delete
+                </button>
+            </td>
+        `;
 
-        function displayAppointments() {
+        appointmentTable.appendChild(row);
+    });
+}
 
-            appointmentList.innerHTML = "";
+document
+    .getElementById("appointmentForm")
+    .addEventListener("submit", function(event) {
 
-            const appointments =
-                JSON.parse(localStorage.getItem("appointments")) || [];
+        event.preventDefault();
 
+        const customer =
+            document.getElementById("customerName").value;
 
-            appointments.forEach(function(appointment) {
+        const service =
+            document.getElementById("serviceName").value;
 
-                const newAppointment =
-                    document.createElement("div");
+        const date =
+            document.getElementById("appointmentDate").value;
 
-                newAppointment.className = "appointment";
+        const time =
+            document.getElementById("appointmentTime").value;
 
+        const appointments =
+            JSON.parse(localStorage.getItem("appointments")) || [];
 
-                newAppointment.innerHTML = `
+        appointments.push({
+            customer: customer,
+            service: service,
+            date: date,
+            time: time
+        });
 
-                    <div>
-
-                        <div class="customer">
-                            ${appointment.customer}
-                        </div>
-
-                        <div class="service">
-                            ${appointment.service}
-                        </div>
-
-                    </div>
-
-                    <div class="time">
-                        ${appointment.time}
-                    </div>
-
-                `;
-
-
-                appointmentList.appendChild(newAppointment);
-
-            });
-
-
-            document.getElementById("todayCount").textContent =
-                appointments.length;
-
-
-            document.getElementById("upcomingCount").textContent =
-                appointments.length;
-
-
-            const customers =
-                [...new Set(
-                    appointments.map(function(a) {
-                        return a.customer;
-                    })
-                )];
-
-
-            document.getElementById("customerCount").textContent =
-                customers.length;
-
-        }
-
+        localStorage.setItem(
+            "appointments",
+            JSON.stringify(appointments)
+        );
 
         document
             .getElementById("appointmentForm")
-            .addEventListener("submit", function(event) {
+            .reset();
 
-                event.preventDefault();
+        closeAppointmentForm();
 
+        loadAppointments();
+    });
 
-                const customer =
-                    document.getElementById("customerName").value;
+function deleteAppointment(index) {
 
+    const appointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
 
-                const service =
-                    document.getElementById("serviceName").value;
+    appointments.splice(index, 1);
 
+    localStorage.setItem(
+        "appointments",
+        JSON.stringify(appointments)
+    );
 
-                const date =
-                    document.getElementById("appointmentDate").value;
+    loadAppointments();
+}
 
-
-                const time =
-                    document.getElementById("appointmentTime").value;
-
-
-                const appointments =
-                    JSON.parse(localStorage.getItem("appointments")) || [];
-
-
-                appointments.push({
-
-                    customer: customer,
-
-                    service: service,
-
-                    date: date,
-
-                    time: time
-
-                });
-
-
-                localStorage.setItem(
-                    "appointments",
-                    JSON.stringify(appointments)
-                );
-
-
-                displayAppointments();
-
-
-                document
-                    .getElementById("appointmentForm")
-                    .reset();
-
-
-                closeAppointmentForm();
-
-            });
-
-
-        displayAppointments();
+loadAppointments();
 
     </script>
 
