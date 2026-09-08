@@ -546,22 +546,22 @@ function loadAppointments() {
             <td>
                 <span class="status">
                     Confirmed
-                </span>
+                </td>
             <td>
 
-               <button
-                    class="action-button edit"
-                    onclick="editAppointment(${index})">
-                    Edit
-               </button>
+    <button
+        class="action-button edit"
+        onclick="editAppointment(${index})">
+        Edit
+    </button>
 
-               <button
-                    class="action-button delete"
-                    onclick="deleteAppointment(${index})">
-                    Delete
-               </button>
+    <button
+        class="action-button delete"
+        onclick="deleteAppointment(${index})">
+        Delete
+    </button>
 
-            </td>
+</td>
         `;
 
         appointmentTable.appendChild(row);
